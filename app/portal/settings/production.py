@@ -2,7 +2,8 @@ from .base import *
 
 DEBUG = False
 
-try:
-    from .local import *
-except ImportError:
-    pass
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",")
+
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
